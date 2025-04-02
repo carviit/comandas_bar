@@ -1,0 +1,147 @@
+/* Estilo global */
+body {
+  background-color: #2c3338;
+  color: #606468;
+  font-family: "Open Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Modern Navbar */
+.modern-navbar {
+  background: linear-gradient(90deg, #343a40, #212529);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+.modern-navbar .navbar-brand {
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #ffc107 !important;
+}
+
+.modern-navbar .nav-link {
+  font-size: 1.1rem;
+  margin: 0 0.75rem;
+  color: #e0e0e0 !important;
+  transition: color 0.3s ease;
+}
+
+.modern-navbar .nav-link:hover,
+.modern-navbar .nav-link.active {
+  color: #ffc107 !important;
+}
+
+/* Container principal */
+.container {
+  margin-top: 20px;
+}
+
+/* Tabela de produtos (agora com fundo escuro) */
+.table {
+  background-color: #2c3338; /* Fundo escuro */
+  color: #eee;              /* Texto claro */
+  border-radius: 0.25rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.table thead th {
+  background-color: #db812d; 
+  color: #fff; 
+  border: none;
+}
+
+.table tbody tr:nth-of-type(odd) {
+  background-color: #3b4148; /* Linha ímpar */
+}
+
+.table tbody tr:nth-of-type(even) {
+  background-color: #434a52; /* Linha par */
+}
+
+.table th,
+.table td {
+  vertical-align: middle;
+  border-top: none;
+}
+
+/* Botões */
+.btn-primary {
+  background-color: #4f4cea;
+  border-color: #4f4cea;
+}
+
+.btn-primary:hover {
+  background-color: #3b3cc0;
+  border-color: #3b3cc0;
+}
+
+/* Modal de cadastro de produto */
+.modal-content {
+  background-color: #2c3338;
+  color: #eee;
+  border: none;
+  border-radius: 0.25rem;
+}
+
+.modal-header,
+.modal-body,
+.modal-footer {
+  border: none;
+}
+
+.modal-title {
+  color: #eee;
+}
+
+/* Inputs do formulário */
+.form-control {
+  background-color: #3b4148;
+  color: #fff; /* Texto branco ao digitar */
+  border: 1px solid #4f4cea;
+}
+
+/* Placeholder */
+.form-control::placeholder {
+  color: #ccc;
+  opacity: 1;
+}
+
+.form-control:-ms-input-placeholder {
+  color: #ccc;
+}
+
+.form-control::-ms-input-placeholder {
+  color: #ccc;
+}
+
+/* Botão cancelar no modal */
+.btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.titulo-mesas {
+  font-family: 'Roboto', sans-serif;
+  font-size: 4rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 2rem 0;
+  background: linear-gradient(135deg, #ff6f00, #ffc107, #ff6f00);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientAnimation 3s ease infinite;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

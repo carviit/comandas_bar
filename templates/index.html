@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mesas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+</head>
+<body>
+    <!-- Nav Bar Modernizada -->
+<nav class="navbar navbar-expand-lg modern-navbar">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{{ url_for('index') }}">Sistema de Comandas</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('index') }}">Mesas</a>
+        </li>
+        {% if funcionario and funcionario.cargo == 'Gerente' %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('funcionarios') }}">Funcionários</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('produtos') }}">Produtos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('relatorios') }}">Relatórios</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+    <div class="d-flex">
+      <a class="btn btn-danger" href="{{ url_for('logout') }}">Logout</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-4">
+    <h1 class="titulo-mesas">Mesas</h1>
+    <button id="criarMesa" class="btn btn-primary d-block mx-auto">Criar Mesa</button>
+
+    <div class="mesas-container">
+        {% for mesa in mesas %}
+        <div class="mesa {% if mesa.status == 'aberta' %}aberta{% else %}fechada{% endif %}" data-id="{{ mesa.id }}">
+            {{ mesa.numero }}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalMesa" tabindex="-1" aria-labelledby="modalMesaLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Produtos da Mesa <span id="mesaNumero"></span></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h6>Itens na mesa:</h6>
+                <ul id="listaProdutos"></ul>
+
+                <h6 class="mt-3">Adicionar Produto:</h6>
+                <input type="text" id="buscaProduto" class="form-control" placeholder="Buscar Produto">
+                <select id="selectProduto" class="form-control mt-2"></select>
+                <input type="number" id="quantidade" class="form-control mt-2" placeholder="Quantidade">
+                <button id="adicionarProduto" class="btn btn-success mt-2">Adicionar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para fechar a mesa com nota fiscal -->
+<div class="modal fade" id="modalNota" tabindex="-1" aria-labelledby="modalNotaLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg"> <!-- Modal maior para exibir a nota -->
+      <div class="modal-content">
+        <div class="modal-header">
+           <h5 class="modal-title" id="modalNotaLabel">Nota Fiscal - Mesa <span id="notaMesaNumero"></span></h5>
+           <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+              <span aria-hidden="true">&times;</span>
+           </button>
+        </div>
+        <div class="modal-body">
+           <div id="notaConteudo">
+              <!-- Aqui o JS irá gerar uma tabela com os itens -->
+           </div>
+           <p class="text-right font-weight-bold">Total: R$ <span id="notaTotal"></span></p>
+        </div>
+        <div class="modal-footer">
+           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+           <button id="confirmarFecharMesa" type="button" class="btn btn-primary">Fechar Mesa</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{{ url_for('static', filename='js/index.js') }}"></script>
+
+</body>
+</html>
